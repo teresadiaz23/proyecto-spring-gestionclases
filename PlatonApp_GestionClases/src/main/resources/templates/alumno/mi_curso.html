@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_alum::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Mi curso</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800">Curso: <span th:text="${curso.nombre}"> nombre curso</span></h1>
+          <h1 class="h4 mb-4 text-gray-800">Listado Asignaturas Matriculadas</h1>
+
+          <a href="#" th:href="@{/alum/curso/situacion/new/}" class="btn btn-success agregar border-0 mb-4">
+          Convalidación/Exención de Asignatura</a>
+          <a href="#" th:href="@{/alum/curso/solicitud/estado/}" class="btn btn-info agregar border-0 mb-4 float-right">
+           Ver estado solicitudes</a>
+           <th:block th:if="${cursoServicio.alumnosAmpliacion(curso, alumno)}">
+            <a href="#" th:href="@{/alum/curso/ampliacion/new/}" class="btn btn-primary border-0 mb-4">
+              Solicitar Ampliación de Matrícula</a>
+           </th:block>
+           
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+              
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Horario</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    
+                  </tfoot>
+                  <tbody>
+                    <tr th:each="asignatura : ${asignaturas}">
+                     
+                      <td th:text="${asignatura.nombre}">Acceso a Datos</td>
+                      <td th:text="${#strings.listJoin(asignatura.horarios.![dia + ','+ tramoHorario], '; ')}">Horario</td>
+
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      
+
+</body>
+
+</html>

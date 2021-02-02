@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_alum::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Mi curso</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Convalidación/ Exención de asignatura </h1>
+            <h3 class="h4 mb-4 text-gray-800">Curso: <span th:text="${curso.nombre}"> nombre curso</span></h3>
+           
+  
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                
+              <div class="card-body">
+                
+                <h3 class="h4 mb-4 text-dark">Solicita:</h3>
+                
+                
+                <form method="post" action="#" enctype="multipart/form-data" 
+                th:action="@{/alum/curso/situacion/submit/}" th:object="${situacion}">
+            
+            
+                  <div class="form-check form-check col-sm-1">
+                    <input class="form-check-input" type="radio" name="tipo" th:field="*{tipo}" th:value="${'CONVALIDACION'}"
+                    id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Convalidación</label>
+                  </div>
+                  <div class="form-check form-check col-sm-1">
+                    <input class="form-check-input" type="radio" name="tipo" th:field="*{tipo}" th:value="${'EXENCION'}"
+                    id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Exención</label>
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0 mt-3">
+                    <select id="asignatura" class="form-control" th:field="*{asignatura}">
+                      <option value="">Asignatura</option>
+                      <option th:each="asignatura : ${asignaturas}" th:value="${asignatura.id}" th:text="${asignatura.nombre}">N/S</option>
+                  </select>	 
+                </div>
+                  
+        
+                    <div class="col-sm-5 mb-3 mt-3">
+                      <label for="file">Subir archivo PDF</label> <input id="file"
+                        name="file" class="form-control input-file" required type="file">
+                    </div>
+          
+      
+                  <button type="submit" class="btn btn-success btn-user btn-block col-sm-2 mb-3 mb-sm-0 mt-3">Enviar</button>
+                </form>
+            
+                
+              </div>
+            </div>
+            
+  
+        </div>
+      
+
+</body>
+
+</html>

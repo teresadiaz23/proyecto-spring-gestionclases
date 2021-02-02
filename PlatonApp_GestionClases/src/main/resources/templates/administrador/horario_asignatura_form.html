@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_admin::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Agregar Horario</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800"><span th:text="${horario.id != 0} ? 'Editar' : 'Nuevo'">Nuevo</span> Horario</h1>
+
+          <form name="horario" class="user mb-5" id="nuevoHorario" method="POST" 
+           th:object="${horario}" th:action="${horario.id != 0} ? @{/admin/curso/asignatura/horario/edit/submit} : @{/admin/curso/asignatura/horario/submit}">
+         
+              <input type='hidden' th:field="*{id}" id='id'/>
+
+              <div class="col-sm-6 mb-3">
+                <select id="asignatura" required class="form-control" th:field="*{asignatura}">
+                   <option value="">Asignatura</option>
+                   <option th:each="asignatura : ${curso.asignaturas}" th:value="${asignatura.id}" th:text="${asignatura.nombre}">N/S</option>
+               </select>	
+               
+             </div>
+             <p class="font-weight-bold">Día:</p>
+
+              <div class="form-group row ml-2">
+            
+                <div class="form-check form-check-inline col-sm-1">
+                  <input class="form-check-input" type="radio" name="dia" th:field="*{dia}" th:value="${'LUN'}" id="inlineRadio1" value="option1">
+                  <label class="form-check-label" for="inlineRadio1">Lunes</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                  <input class="form-check-input" type="radio" name="dia" th:field="*{dia}" th:value="${'MAR'}" id="inlineRadio2" value="option2">
+                  <label class="form-check-label" for="inlineRadio2">Martes</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                  <input class="form-check-input" type="radio" name="dia" th:field="*{dia}" th:value="${'MIE'}" id="inlineRadio3" value="option3">
+                  <label class="form-check-label" for="inlineRadio1">Miércoles</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                  <input class="form-check-input" type="radio" name="dia" th:field="*{dia}" th:value="${'JUE'}" id="inlineRadio4" value="option4">
+                  <label class="form-check-label" for="inlineRadio2">Jueves</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                  <input class="form-check-input" type="radio" name="dia" th:field="*{dia}" th:value="${'VIE'}" id="inlineRadio5" value="option5">
+                  <label class="form-check-label" for="inlineRadio2">Viernes</label>
+                </div>
+              </div>
+
+              <p class="font-weight-bold">Tramo horario:</p>
+
+              <div class="form-group row">
+
+              </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="tramoHorario" th:field="*{tramoHorario}" th:value="${'1'}" id="inlineRadio1" value="option1">
+                  <label class="form-check-label" for="inlineRadio1">1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="tramoHorario" th:field="*{tramoHorario}" th:value="${'2'}" id="inlineRadio2" value="option2">
+                  <label class="form-check-label" for="inlineRadio2">2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="tramoHorario" th:field="*{tramoHorario}" th:value="${'3'}" id="inlineRadio3" value="option3">
+                  <label class="form-check-label" for="inlineRadio1">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="tramoHorario" th:field="*{tramoHorario}" th:value="${'4'}" id="inlineRadio4" value="option4">
+                  <label class="form-check-label" for="inlineRadio2">4</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="tramoHorario" th:field="*{tramoHorario}" th:value="${'5'}" id="inlineRadio5" value="option5">
+                  <label class="form-check-label" for="inlineRadio2">5</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="tramoHorario" th:field="*{tramoHorario}" th:value="${'6'}" id="inlineRadio6" value="option6">
+                  <label class="form-check-label" for="inlineRadio2">6</label>
+                </div>
+            
+              
+
+            <button type="submit" class="btn btn-success btn-user btn-block col-sm-2 mb-3 mb-sm-0">Guardar</button>
+          </form>
+
+
+        <!-- /.container-fluid -->
+
+        </div>
+      
+
+</body>
+
+</html>

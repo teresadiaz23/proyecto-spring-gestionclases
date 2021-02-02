@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_teacher::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Lista Títulos</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Listado de Títulos</h1>
+  
+            
+  
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+              
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        
+                        
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      
+                    </tfoot>
+                    <tbody>
+                      <tr th:each="titulo : ${titulos}">
+                       
+                        <td th:text="${titulo.nombre}">Técnico Superior Desarrollo Aplicaciones Multiplataforma</td>
+                        
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          <!-- /.container-fluid -->
+  
+        </div>
+      
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_admin::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Administración Cursos</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Gestión Cursos</h1>
+  
+            <!-- <a href="#" class="btn btn-info agregar border-0 mb-4">
+               Agregar con fichero CVS</a> -->
+            <a href="#" th:href="@{/admin/curso/new}" class="btn btn-success agregar border-0 mb-4">
+              <i class="fas fa-plus-circle"></i> Nuevo curso</a>
+  
+           
+  
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+              
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Titulo</th>
+                        <th>Asignaturas</th>
+                        <th>Horario</th>
+                        <th>Editar</th>
+                        <th>Baja</th>
+                        
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      
+                    </tfoot>
+                    <tbody>
+                      <tr th:each="curso : ${cursos}">
+                       
+                        <td><a th:text="${curso.nombre}" th:href="@{/admin/alumno/detalle/{id}(id=${curso.id})}">2º DAM</a></td>
+                        <td th:text="${curso.titulo.nombre}">Desarrollo Aplicaciones Multiplataforma</td>
+                        <td><a href="#" class="btn btn-outline-dark border-0"
+                          th:href="@{/admin/curso/asignatura/{id}(id=${curso.id})}"><i class="far fa-list-alt"></i></a></td>
+                        <td><a th:href="@{/admin/horario/mostrar/{id}(id=${curso.id})}" class="btn btn-outline-info border-0">
+                          <i class="far fa-clock"></i></a></td>
+                        <td><a href="#" class="btn btn-outline-warning border-0 editar"
+                             th:href="@{/admin/curso/edit/{id}(id=${curso.id})}">
+                          <i class="fas fa-edit"></i></a></td>
+                        <td><a href="#" class="btn btn-outline-danger border-0" data-toggle="modal"
+                          data-target="#delete-modal" th:data-id="${curso.id}"><i class="fas fa-trash-alt"></i></a></td>
+                        
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"
+                                  aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h4 class="modal-title">Dar de baja al curso</h4>
+                      </div>
+                      <div class="modal-body">
+                          <p>¿Está usted seguro de dar de baja ese curso?</p>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                          <a href="/admin/curso/borrar/" class="btn btn-danger">Sí</a>
+                      </div>
+                  </div>
+      
+              </div>
+          </div>
+  
+          <!-- /.container-fluid -->
+  
+        </div>
+      
+
+</body>
+
+</html>

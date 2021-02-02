@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_teacher::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Alumnos Curso</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Alumnos curso <span th:text="${curso.nombre}"> nombre curso</span></h1>
+
+            
+  
+            
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+              
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Apellidos, Nombre</th>
+                        <div th:each="asignatura : ${asignaturas}">
+                          <th th:text="${asignatura.nombre}">Apellidos</th>
+                      </div>
+
+                        
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      
+                    </tfoot>
+                    <tbody>
+                      
+                      <tr th:each="alumno : ${alumnosCurso}">
+                       
+                        <td><span th:text="${alumno.apellidos}">Perez</span>, <span th:text="${alumno.nombre}">Pepe</span></td>
+                        <th:block th:each=" asignatura: ${asignaturas}">
+                            <td th:text="${usuarioServicio.estadoMatricula(alumno, asignatura)}">Matriculado</td>
+
+                        </th:block>
+                       
+                        
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"
+                                  aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h4 class="modal-title">Borrar alumno</h4>
+                      </div>
+                      <div class="modal-body">
+                          <p>¿Está usted seguro de borrar este alumno?</p>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                          <a href="/admin/alumno/borrar/" class="btn btn-danger">Sí</a>
+                      </div>
+                  </div>
+      
+              </div>
+          </div>
+  
+          <!-- /.container-fluid -->
+  
+        </div>
+
+      
+
+</body>
+
+</html>

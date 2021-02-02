@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_admin::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Agregar Profesor</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800"><span th:text="${profesor.id != 0} ? 'Editar' : 'Nuevo'">Nuevo</span> Profesor</h1>
+
+          <form name="profesor" class="user mb-5" id="nuevoProfesor" method="POST" 
+           th:object="${profesor}" th:action="${profesor.id != 0} ? @{/admin/profesor/edit/submit} : @{/admin/profesor/submit}">
+           
+         
+              <input type='hidden' th:field="*{id}" id='id'/>
+              <input type='hidden' th:field="*{password}" id='pwd'/>
+            <div class="form-group row">
+              
+              <div class="col-sm-6 mb-3">
+                <input type="text" class="form-control form-control-user" th:field="*{nombre}" id="nombre"
+                 placeholder="Nombre">
+              </div>
+              <div class="col-sm-6 mb-3">
+                <input type="text" class="form-control form-control-user" th:field="*{apellidos}" id="apellidos"
+                 placeholder="Apellidos">
+              </div>
+              <div class="col-sm-6 mb-3">
+                <input type="text" class="form-control form-control-user" th:field="*{email}" id="email"
+                 placeholder="Email">
+              </div>
+              <div class="col-sm-2 mb-3 ml-4">
+                <input class="form-check-input" type="checkbox" value="true" th:field="*{admin}" id="administrador">
+                <label class="custom-control-label" for="administrador">Jefe de estudios</label>
+                
+                 
+              </div>
+              
+              
+            
+            </div>
+            <button type="submit" class="btn btn-success btn-user btn-block col-sm-2 mb-3 mb-sm-0">Guardar</button>
+          </form>
+
+
+        <!-- /.container-fluid -->
+
+        </div>
+      
+
+</body>
+
+</html>

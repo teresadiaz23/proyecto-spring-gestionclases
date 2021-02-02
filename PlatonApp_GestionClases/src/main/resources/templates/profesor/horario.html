@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_teacher::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Administración Horarios</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Lista Horarios</h1>
+            
+  
+            
+           
+  
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+              
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        
+                        <th>Curso</th>
+                        
+                        
+                        
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      
+                    </tfoot>
+                    <tbody>
+                      <tr th:each="curso : ${cursos}">
+                       
+                        <td><a th:text="${curso.nombre}" th:href="@{/teacher/horario/mostrar/{id}(id=${curso.id})}">Acceso a datos</a> </td>
+                        
+                        
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+  
+          <!-- /.container-fluid -->
+  
+        </div>
+      
+
+</body>
+
+</html>

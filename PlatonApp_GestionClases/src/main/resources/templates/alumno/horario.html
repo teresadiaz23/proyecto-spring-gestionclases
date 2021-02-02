@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_alum::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Inicio Alumno</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800">Horario <span th:text="${curso.nombre}">Curso</span></h1>
+          
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      
+                      <th>Lunes</th>
+                      <th>Martes</th>
+                      <th>Miércoles</th>
+                      <th>Jueves</th>
+                      <th>Viernes</th>
+                      
+                      
+                      
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    
+                  </tfoot>
+                  <tbody>
+                    <tr th:each="listaHorario : ${horarios}">
+                        <div th:if="${#lists.isEmpty(listaHorario)}">
+                          <td>Asignatura 1</td>
+                          <td>Asignatura 2</td>
+                          <td>Asignatura 3</td>
+                          <td>Asignatura 4</td>
+                          <td>Asignatura 5</td>
+
+                        </div>
+                        <div th:unless="${#lists.isEmpty(listaHorario)}" th:each="horario : ${listaHorario}">
+                          
+                          <th:block th:if="${horario.asignatura.activo == true}">
+                            <td th:text="${horario.asignatura.nombre}"></td>
+
+                          </th:block>
+                          <th:block th:unless="${horario.asignatura.activo == true}">
+                            <td class="bg-secondary">Libre</td>
+
+                          </th:block>
+ 
+
+                        </div>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+        <!-- /.container-fluid -->
+
+      </div>
+      
+
+</body>
+
+</html>

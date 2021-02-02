@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_teacher::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Lista Asignaturas</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Listado de Asignaturas</h1>
+            <h4 class="h4 mb-4 text-gray-800">Asignaturas curso <span th:text="${curso.nombre}"> nombre curso</span></h4>
+  
+            
+  
+           
+  
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+              
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Horario</th>
+                        
+                        
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      
+                    </tfoot>
+                    <tbody>
+                      <tr th:each="asignatura : ${asignaturas}">
+                       
+                        <td th:text="${asignatura.nombre}">Acceso a Datos</td>
+                        
+                        <td th:text="${#strings.listJoin(asignatura.horarios.![dia + ','+ tramoHorario], '; ')}">Horario</td>
+                        
+                        
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            
+          <!-- /.container-fluid -->
+  
+        </div>
+      
+
+</body>
+
+</html>

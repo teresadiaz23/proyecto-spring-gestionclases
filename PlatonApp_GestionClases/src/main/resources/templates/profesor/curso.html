@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_teacher::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Lista Cursos</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Listado de Cursos</h1>
+  
+
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+              
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Titulo</th>
+                        <th>Asignaturas</th>
+                        <th>Horario</th>
+
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      
+                    </tfoot>
+                    <tbody>
+                      <tr th:each="curso : ${cursos}">
+                       
+                        <td><a th:text="${curso.nombre}" th:href="@{/teacher/curso/detalle/{id}(id=${curso.id})}">2º DAM</a></td>
+                        <td th:text="${curso.titulo.nombre}">Desarrollo Aplicaciones Multiplataforma</td>
+                        <td><a href="#" class="btn btn-outline-dark border-0"
+                          th:href="@{/teacher/asignatura/{id}(id=${curso.id})}"><i class="far fa-list-alt"></i></i></a></td>
+                        <td><a href="#" th:href="@{/teacher/horario/mostrar/{id}(id=${curso.id})}" class="btn btn-outline-info border-0"><i class="far fa-clock"></i></a></td>
+                         
+                        
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            
+  
+          <!-- /.container-fluid -->
+  
+        </div>
+      
+
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_admin::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Administración Títulos</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Gestión Títulos</h1>
+  
+            <!-- <a href="#" class="btn btn-info agregar border-0 mb-4">
+               Agregar con fichero CVS</a> -->
+            <a href="#" th:href="@{/admin/titulo/new}" class="btn btn-success agregar border-0 mb-4">
+              <i class="fas fa-plus-circle"></i> Nuevo título</a>
+  
+           
+  
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+              
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Editar</th>
+                        <th>Baja</th>
+                        
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      
+                    </tfoot>
+                    <tbody>
+                      <tr th:each="titulo : ${titulos}">
+                       
+                        <td th:text="${titulo.nombre}">Técnico Superior Desarrollo Aplicaciones Multiplataforma</td>
+                        <td><a href="#" class="btn btn-outline-warning border-0 editar" th:href="@{/admin/titulo/edit/{id}(id=${titulo.id})}">
+                          
+                          <i class="fas fa-edit"></i></a></td>
+                        <td><a href="#" class="btn btn-outline-danger border-0" data-toggle="modal"
+                          data-target="#delete-modal" th:data-id="${titulo.id}"><i class="fas fa-trash-alt"></i></a></td>
+                        
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"
+                                  aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h4 class="modal-title">Dar de baja título</h4>
+                      </div>
+                      <div class="modal-body">
+                          <p>¿Está usted seguro de quere dar de baja este título?</p>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                          <a href="/admin/titulo/borrar/" class="btn btn-danger">Sí</a>
+                      </div>
+                  </div>
+      
+              </div>
+          </div>
+  
+          <!-- /.container-fluid -->
+  
+        </div>
+      
+
+</body>
+
+</html>

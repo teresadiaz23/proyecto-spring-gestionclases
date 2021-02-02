@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_admin::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Agregar Datos</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800">Nuevos Horarios Asignaturas</h1>
+          <p>El archivo tiene que tener una extensión .csv y tener la siguiente estructura de datos: 
+            <span class="font-weight-bold">NombreCurso;Asignatura;Dia;TramoHorario</span> siendo Dia: LUN, MAR, MIE,
+            JUE o VIE y TramoHorario: 1, 2, 3, 4, 5 ó 6
+          </p>
+          <form method="post" action="#" enctype="multipart/form-data" th:action="@{/datos/horario/new/submit}"
+					th:object="${horario}">
+					  
+					  <div class="col-sm-2 mb-3">
+						  <label for="nombre">Nombre archivo</label> <input type="text" class="form-control"
+							id="nombre" placeholder="" th:field="*{nombre}">
+
+					  </div>
+
+            <div class="col-sm-5 mb-3">
+              <label for="file">Archivo</label> <input id="file"
+                name="file" class="form-control input-file" required type="file">
+            </div>
+
+            <button type="submit" class="btn btn-success btn-user btn-block col-sm-2 mb-3 mb-sm-0">Enviar</button>
+          </form>
+          
+
+        <!-- /.container-fluid -->
+
+        </div>
+
+        
+      
+
+</body>
+
+</html>

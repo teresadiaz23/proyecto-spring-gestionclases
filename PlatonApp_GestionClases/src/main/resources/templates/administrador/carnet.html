@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Carnet</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="../../static/vendor/fontawesome-free/css/all.min.css" th:href="@{/vendor/fontawesome-free/css/all.min.css}"
+        rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="../../static/css/sb-admin-2.min.css" rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}">
+  <style>
+    
+    table{
+      height: 100px;
+      width: 20rem;
+    }
+    .card{
+      height: 320px;
+    }
+
+    th, td {
+    font-size: 8px;
+    }
+
+    .table td, .table th {
+        padding: .25rem;
+
+        
+    }
+    .card{
+      background-color: #F1FAEE;
+    }
+  </style>
+
+  
+</head>
+
+<body id="page-top">
+
+    <div class="container-fluid"  id="contenido">
+      <th:block th:each="alumno : ${alumnos}">
+      <div class="d-inline-flex flex-row">
+
+      <div class="card mb-5" style="width: 32rem;">
+        <div class="card-body">
+          <h5 class="card-title mb-5 font-weight-bold text-info">Carnet de Estudiante</h5>
+          <h6 class="card-subtitle mb-5 font-weight-bold">Colegio Salesianos Triana</h6>
+          <p class="card-text">Nombre: <span th:text="${alumno.nombre}"></span> <span th:text="${alumno.apellidos}"></span></p>
+          <p class="card-text">Fecha Nacimiento: <span th:text="${#temporals.format(alumno.fechaNacimiento,'dd/MM/yyyy')}"></span></p>
+          <p class="card-text">Curso: <span th:text="${alumno.curso.nombre}"></span> </p>
+          
+        </div>
+      </div>
+      <div class="card mb-5" style="width: 32rem;">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" cellspacing="0">
+              <thead>
+                <tr>
+                  
+                  <th>Lunes</th>
+                  <th>Martes</th>
+                  <th>Miércoles</th>
+                  <th>Jueves</th>
+                  <th>Viernes</th>
+                  
+                  
+                  
+                </tr>
+              </thead>
+              <tfoot>
+                
+              </tfoot>
+              <tbody>
+                <tr th:each="listaHorario : ${usuarioServicio.horarioPorTramosAlumno(alumno)}">
+                    <div th:if="${#lists.isEmpty(listaHorario)}">
+                      <td>Asignatura</td>
+                      <td>Asignatura</td>
+                      <td>Asignatura</td>
+                      <td>Asignatura</td>
+                      <td>Asignatura</td>
+
+                    </div>
+                    <div th:unless="${#lists.isEmpty(listaHorario)}" th:each="horario : ${listaHorario}">
+                      
+                      <th:block th:if="${horario.asignatura.activo == true}">
+                        <td th:text="${horario.asignatura.nombre}"></td>
+
+                      </th:block>
+                      <th:block th:unless="${horario.asignatura.activo == true}">
+                        <td class="bg-secondary">Libre</td>
+
+                      </th:block>
+
+
+                    </div>
+                </tr>
+                <tr th:each="listaHorario : ${horarios}">
+                  <div th:if="${#lists.isEmpty(listaHorario)}">
+                    <td>Asignatura</td>
+                    <td>Asignatura</td>
+                    <td>Asignatura</td>
+                    <td>Asignatura</td>
+                    <td>Asignatura</td>
+                    </div>
+                    </tr>
+                    <tr th:each="listaHorario : ${horarios}">
+                      <div th:if="${#lists.isEmpty(listaHorario)}">
+                        <td>Asignatura</td>
+                        <td>Asignatura</td>
+                        <td>Asignatura</td>
+                        <td>Asignatura</td>
+                        <td>Asignatura</td>
+                        </div>
+                        </tr>
+                        <tr th:each="listaHorario : ${horarios}">
+                          <div th:if="${#lists.isEmpty(listaHorario)}">
+                            <td>Asignatura</td>
+                            <td>Asignatura</td>
+                            <td>Asignatura</td>
+                            <td>Asignatura</td>
+                            <td>Asignatura</td>
+                            </div>
+                            </tr>
+                            <tr th:each="listaHorario : ${horarios}">
+                              <div th:if="${#lists.isEmpty(listaHorario)}">
+                                <td>Asignatura</td>
+                                <td>Asignatura</td>
+                                <td>Asignatura</td>
+                                <td>Asignatura</td>
+                                <td>Asignatura</td>
+                                </div>
+                                </tr>
+                                <tr th:each="listaHorario : ${horarios}">
+                                  <div th:if="${#lists.isEmpty(listaHorario)}">
+                                    <td>Asignatura</td>
+                                    <td>Asignatura</td>
+                                    <td>Asignatura</td>
+                                    <td>Asignatura</td>
+                                    <td>Asignatura</td>
+                                    </div>
+                                    </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </th:block>
+        
+
+    </div>
+    
+
+  
+
+            
+                
+
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Platón 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="../../static/vendor/jquery/jquery.min.js" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+  <script src="../../static/vendor/bootstrap/js/bootstrap.bundle.min.js"
+          th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="../../static/vendor/jquery-easing/jquery.easing.min.js"
+          th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="../../static/js/sb-admin-2.min.js" th:src="@{/js/sb-admin-2.min.js}"></script>
+  <script src="../../static/js/codigoBorrar.js" th:src="@{/js/codigoBorrar.js}"></script>
+
+</body>
+
+</html>

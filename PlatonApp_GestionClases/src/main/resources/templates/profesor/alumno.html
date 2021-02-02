@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_teacher::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Lista Alumnos</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Listado de Alumnos</h1>
+  
+
+  
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+              
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Email</th>
+                        <th>Fecha de Nacimiento</th>
+                        
+                        
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      
+                    </tfoot>
+                    <tbody>
+                      <tr th:each="alumno : ${alumnos}">
+                       
+                        <td th:text="${alumno.nombre}">Pepe</td>
+                        <td th:text="${alumno.apellidos}">Pepe</td>
+                        <td th:text="${alumno.email}">Pepe</td>
+                        <td th:text="${#temporals.format(alumno.fechaNacimiento,'dd/MM/yyyy')}">Pepe</td>
+                        
+                        
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+
+          <!-- /.container-fluid -->
+  
+        </div>
+      
+
+</body>
+
+</html>

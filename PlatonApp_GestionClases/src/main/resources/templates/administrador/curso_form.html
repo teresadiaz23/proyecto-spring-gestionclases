@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_admin::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Agregar Curso</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800"><span th:text="${curso.id != 0} ? 'Editar' : 'Nuevo'">Nuevo</span> Curso</h1>
+
+          <form name="curso" class="user mb-5" id="nuevoCurso" method="POST" 
+           th:object="${curso}" th:action="${curso.id != 0} ? @{/admin/curso/edit/submit} : @{/admin/curso/submit}">
+           
+         
+              <input type='hidden' th:field="*{id}" id='id'/>
+            <div class="form-group row">
+              
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" th:field="*{nombre}" id="nombreCurso"
+                 placeholder="Nombre">
+              </div>
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                 <select id="titulo" class="form-control" th:field="*{titulo}">
+                    <option value="">Título</option>
+                    <option th:each="titulo : ${titulos}" th:value="${titulo.id}" th:text="${titulo.nombre}">N/S</option>
+                </select>	
+                
+              </div>
+              
+            
+            </div>
+            <button type="submit" class="btn btn-success btn-user btn-block col-sm-2 mb-3 mb-sm-0">Guardar</button>
+          </form>
+
+
+        <!-- /.container-fluid -->
+
+        </div>
+      
+
+</body>
+
+</html>

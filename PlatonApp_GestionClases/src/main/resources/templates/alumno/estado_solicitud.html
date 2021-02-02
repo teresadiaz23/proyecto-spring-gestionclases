@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_alum::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Mi curso</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800">Solicitudes Convalidación/ Exención:</h1>
+
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+              
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Asignatura</th>
+                      <th>Fecha Solicitud</th>
+                      <th>Fecha Resolución</th>
+                      <th>Motivo</th>
+                      <th>Estado solicitud</th>
+                      <th>Solicitud</th>
+                      
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    
+                  </tfoot>
+                  <tbody>
+                    <tr th:each="solicitud : ${solicitudes}">
+                     
+                      <td th:text="${solicitud.asignatura.nombre}">Acceso a Datos</td>
+                      <td th:text="${#temporals.format(solicitud.fechaSolicitud, 'dd/MM/yyyy')}">@mdo</td>
+                      <td th:text="${#temporals.format(solicitud.fechaResolucion, 'dd/MM/yyyy')}">@mdo</td>
+                      <td th:text="${solicitud.tipo}">Acceso a Datos</td>
+                      <td th:text="${solicitud.estadoSolicitud}">Horario</td>
+                      <td><a href="" class="btn btn-outline-primary border-0" th:href="@{/alum/archivo/{nombre}(nombre=${solicitud.adjunto})}"><i class="fas fa-file-download"></i></a></td>
+
+                      
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <h1 class="h3 mb-4 text-gray-800">Solicitudes Ampliación Matrícula:</h1>
+
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+              
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Asignatura</th>
+                      <th>Curso</th>
+                      <th>Fecha Solicitud</th>
+                      <th>Fecha Resolución</th>
+                      <th>Estado solicitud</th>
+                      
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    
+                  </tfoot>
+                  <tbody>
+                    <tr th:each="ampliacion : ${ampliaciones}">
+                     
+                      <td th:text="${ampliacion.asignatura.nombre}">Acceso a Datos</td>
+                      <td th:text="${ampliacion.asignatura.curso.nombre}">Acceso a Datos</td>
+                      <td th:text="${#temporals.format(ampliacion.fechaSolicitud, 'dd/MM/yyyy')}">@mdo</td>
+                      <td th:text="${#temporals.format(ampliacion.fechaResolucion, 'dd/MM/yyyy')}">@mdo</td>
+                      <td th:text="${ampliacion.estadoSolicitud}">Horario</td>
+
+                      
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          
+
+        </div>
+        <!-- /.container-fluid -->
+      
+
+</body>
+
+</html>

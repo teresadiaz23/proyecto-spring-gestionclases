@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_admin::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Aprobado Curso Anterior</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Asignatura aprobado del curso anterior </h1>
+            <h3 class="h4 mb-4 text-gray-800">Curso: <span th:text="${curso.nombre}"> nombre curso</span></h3>
+           
+  
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                
+              <div class="card-body">
+                <!-- <h3 class="h4 mb-4 text-gray-800">Asignatura: <span th:text="${asignatura.nombre}"> nombre asignatura</span></h3> -->
+                
+                
+                <form method="post" action="#" 
+                th:action="@{/admin/alumno/situacion/aprobado/submit/}" th:object="${aprobado}">
+            
+            
+                <div class="col-sm-6 mb-3 mb-sm-0 mt-3">
+                  <select id="alumno" class="form-control" th:field="*{alumno}">
+                     <option value="">Alumno</option>
+                     <option th:each="alumno : ${alumnos}" th:value="${alumno.id}" th:text="${alumno.apellidos}+', '+${alumno.nombre}">N/S</option>
+                 </select>	 
+               </div>
+              <div class="col-sm-6 mb-3 mb-sm-0 mt-3">
+                <select id="asignatura" class="form-control" th:field="*{asignatura}">
+                   <option value="">Asignatura</option>
+                   <option th:each="asignatura : ${asignaturas}" th:value="${asignatura.id}" th:text="${asignatura.nombre}">N/S</option>
+               </select>	 
+             </div>
+       
+  
+              <button type="submit" class="btn btn-success btn-user btn-block col-sm-2 mb-3 mb-sm-0 mt-3">Enviar</button>
+            </form>
+            
+                
+              </div>
+            </div>
+            
+  
+        </div>
+      
+
+</body>
+
+</html>

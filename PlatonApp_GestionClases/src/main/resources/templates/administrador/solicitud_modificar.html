@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="layout/base_admin::layout(~{::title},~{},~{::#contenido})">
+
+<head>
+
+  <title>Solicitudes Pendientes</title>
+
+</head>
+
+<body id="page-top">
+
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid"  id="contenido">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Convalidación/ Exención de asignatura </h1>
+            <h3 class="h4 mb-4 text-gray-800">Alumno: <span th:text="${alumno.nombre}"> nombre alumno</span>
+                <span th:text="${alumno.apellidos}"> apellidos alumno</span></h3>
+            <h3 class="h4 mb-4 text-gray-800">Curso: <span th:text="${curso.nombre}"> nombre curso</span>
+                , Asignatura: <span th:text="${asignatura.nombre}"> nombre asignatura</span></h3>
+
+               
+  
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                
+              <div class="card-body">
+
+                
+
+                
+                <form method="post" action="#"
+                th:action="@{/admin/solicitud/submit/}" th:object="${solicitud}">
+                  <input class="" type="hidden" th:field="*{id.alumno_id}" id="id_alumno" name="id_alumno">
+              
+                  <input class="" type="hidden" th:field="*{id.asignatura_id}" id="id_asignatura" name="id_asignatura">
+                  <input class="" type="hidden" name="tipo" th:field="*{tipo}" th:value="${solicitud.tipo}"
+                   id="tipo">
+               
+
+                  <input class="" type="hidden" name="adjunto" th:field="*{adjunto}" th:value="${solicitud.adjunto}"
+                   id="adjunto">
+                  
+               
+            
+                  <div class="form-check col-sm-2">
+                    <input class="form-check-input" type="radio" name="estado" th:field="*{estadoSolicitud}" th:value="${'CONFIRMADA'}"
+                    id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Confirmar solicitud</label>
+                  </div>
+                  <div class="form-check col-sm-2">
+                    <input class="form-check-input" type="radio" name="estado" th:field="*{estadoSolicitud}" th:value="${'DENEGADA'}"
+                    id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Denegar solicitud</label>
+                  </div>
+                  
+
+                  <button type="submit" class="btn btn-success btn-user btn-block col-sm-2 mb-3 mb-sm-0 mt-3">Enviar</button>
+                </form>
+            
+                
+              </div>
+            </div>
+            
+  
+        </div>
+          <!-- /.container-fluid -->
+
+      
+
+</body>
+
+</html>
